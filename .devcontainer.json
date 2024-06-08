@@ -4,10 +4,12 @@
 	"name": "Root Dockerfile",
 
 	// Sets the run context to one level up instead of the .devcontainer folder.
-	"context": ".",
+	// "context": ".",
 
 	// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-	"dockerFile": "Dockerfile",
+	// "dockerFile": "Dockerfile",
+
+	"image": "btwiuse/arch:gear",
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
