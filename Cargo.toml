@@ -28,7 +28,11 @@ tokio.workspace = true
 # It's necessary to include all metawasm crates in the workspace section, otherwise they'll be
 # ignored by Cargo and won't be built.
 [workspace]
-members = ["xtask"]
+members = [
+  "io",
+  "state",
+  "xtask",
+]
 
 [workspace.dependencies]
 gstd = "1.4.1"
