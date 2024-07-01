@@ -12,11 +12,7 @@ publish = false
 resolver = "2"
 members = [
   "controller",
-  "controller-io",
-  "controller-wait-wake",
-  "autoreply",
   "counter",
-  "state",
   "xtask",
 ]
 

@@ -372,14 +372,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f1fdabc7756949593fe60f30ec81974b613357de856987752631dea1e3394c80"
 
 [[package]]
-name = "autoreply"
-version = "0.1.0"
-dependencies = [
- "gear-wasm-builder",
- "gstd",
-]
-
-[[package]]
 name = "backtrace"
 version = "0.3.71"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -874,18 +866,6 @@ version = "0.1.0"
 dependencies = [
  "gmeta",
  "gstd",
-]
-
-[[package]]
-name = "controller-wait-wake"
-version = "0.1.0"
-dependencies = [
- "controller-io",
- "gclient",
- "gear-wasm-builder",
- "gstd",
- "gtest",
- "tokio",
 ]
 
 [[package]]
@@ -2459,20 +2439,8 @@ checksum = "8ab99c1c5b31b55620dac12ba4bd042fac156a6f2842c9c4edcfd278caf8c6ae"
 dependencies = [
  "blake2-rfc",
  "derive_more",
- "gmeta-codegen",
  "hex",
  "scale-info",
-]
-
-[[package]]
-name = "gmeta-codegen"
-version = "1.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0eff498ad76e14e7261ad08a96bc8db28a847f21cc79fb4554a905b6ca61c257"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 2.0.60",
 ]
 
 [[package]]
@@ -5926,16 +5894,6 @@ dependencies = [
  "fastrand 2.0.2",
  "rustix 0.38.34",
  "windows-sys 0.52.0",
-]
-
-[[package]]
-name = "template-state"
-version = "0.1.0"
-dependencies = [
- "controller-io",
- "gear-wasm-builder",
- "gmeta",
- "gstd",
 ]
 
 [[package]]
