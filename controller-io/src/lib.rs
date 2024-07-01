@@ -15,7 +15,7 @@ impl Metadata for ContractMetadata {
     /// I/O types for the `handle()` entry point.
     ///
     /// Here the [`PingPong`] type is used for both incoming and outgoing messages.
-    type Handle = InOut<Action, Reply>;
+    type Handle = InOut<Action, ()>;
     /// Types for miscellaneous scenarios.
     type Others = ();
     /// The input type for the `handle_reply()` entry point.
@@ -37,13 +37,6 @@ pub enum Action {
     Inc,
     Dec,
     Get,
-}
-
-#[derive(Encode, Decode, TypeInfo, Debug, PartialEq, Eq)]
-#[codec(crate = gstd::codec)]
-#[scale_info(crate = gstd::scale_info)]
-pub enum Reply {
-    Counter(i32),
 }
 
 #[derive(Encode, Decode, TypeInfo, Debug, PartialEq, Eq)]
