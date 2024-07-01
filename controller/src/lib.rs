@@ -32,6 +32,7 @@ unsafe extern fn handle() {
 unsafe extern fn handle_reply() {
     // TODO: 接收消息的回复，并转发给用户
     let reply: i32 = msg::load().expect("Failed to load payload");
+    let reply = Counter(reply);
 
     let owner = OWNER.expect("Failed to get owner");
 
