@@ -5,7 +5,7 @@ use gstd::msg;
 static mut COUNTER: i32 = 0;
 
 #[no_mangle]
-unsafe extern "C" fn handle() {
+unsafe extern fn handle() {
     let command = msg::load_bytes().expect("Invalid message");
 
     match command.as_slice() {

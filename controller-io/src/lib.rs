@@ -26,10 +26,8 @@ impl Metadata for ContractMetadata {
     ///
     /// You can also specify just an output ([`Out`]) or input ([`In`](gmeta::In)) type, if both
     /// ([`InOut`]) are expected like here.
-    type State = Out<ActorId>;
+    type State = Out<Info>;
 }
-
-
 
 /// Replies with [`Pong`](PingPong::Pong) if received [`Ping`](PingPong::Ping).
 #[derive(Encode, Decode, TypeInfo, Debug, PartialEq, Eq)]
@@ -47,4 +45,12 @@ pub enum Action {
 pub enum Reply {
     NotReady,
     Counter(i32),
+}
+
+#[derive(Encode, Decode, TypeInfo, Debug, PartialEq, Eq)]
+#[codec(crate = gstd::codec)]
+#[scale_info(crate = gstd::scale_info)]
+pub struct Info {
+    pub owner: ActorId,
+    pub counter: ActorId,
 }
