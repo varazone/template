@@ -6,30 +6,16 @@ license = "MIT"
 edition = "2021"
 publish = false
 
-[package]
-name = "template"
-version.workspace = true
-edition.workspace = true
-publish.workspace = true
-
-[dependencies]
-gstd.workspace = true
-template-io.workspace = true
-
-[build-dependencies]
-gear-wasm-builder.workspace = true
-template-io.workspace = true
-
-[dev-dependencies]
-gtest.workspace = true
-gclient.workspace = true
-tokio.workspace = true
-
 # It's necessary to include all metawasm crates in the workspace section, otherwise they'll be
 # ignored by Cargo and won't be built.
 [workspace]
+resolver = "2"
 members = [
-  "io",
+  "controller",
+  "controller-io",
+  "controller-wait-wake",
+  "autoreply",
+  "counter",
   "state",
   "xtask",
 ]
@@ -40,7 +26,7 @@ gmeta = "1.4.1"
 gear-wasm-builder = "1.4.1"
 gtest = "1.4.1"
 gclient = "1.4.1"
-template-io.path = "io"
+controller-io.path = "controller-io"
 tokio = "1"
 xshell = "0.2"
 anyhow = "1"
