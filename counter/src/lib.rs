@@ -14,7 +14,7 @@ unsafe extern fn handle() {
     gstd::debug!("command: {}", gstd::String::from_utf8_lossy(&command));
     gstd::debug!("payload: {:x?}", &command);
 
-    match gstd::dbg!(command.as_slice()) {
+    match command.as_slice() {
         b"inc" => COUNTER += 1,
         b"dec" => COUNTER -= 1,
         b"get" => (),
