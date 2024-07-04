@@ -1,6 +1,6 @@
 #![no_std]
 
-use gmeta::{In, InOut, Metadata, Out};
+use gmeta::{In, Metadata, Out};
 use gstd::{prelude::*, ActorId};
 
 /// The contract metadata. Used by frontend apps & for describing the types of messages that can be
