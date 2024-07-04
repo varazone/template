@@ -49,3 +49,58 @@ extern fn state() {
     };
     msg::reply(info, 0).expect("Failed to reply from `state()`");
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use gtest::{Log, Program, System};
+
+    #[test]
+    fn my_controller_test() {
+        let system = System::new();
+        system.init_logger();
+        let counter = Program::from_file(
+            &system,
+            "../target/wasm32-unknown-unknown/release/counter.opt.wasm",
+        );
+        assert_eq!(counter.id(), 1.into());
+        let program = Program::current(&system);
+        assert_eq!(program.id(), 2.into());
+
+        let counter_init_result = counter.send_bytes(42, &[]);
+        assert!(!counter_init_result.main_failed());
+
+        let init_result = program.send(42, counter.id());
+        assert!(!init_result.main_failed());
+
+        let state: Info = program.read_state(b"").unwrap();
+        let expected = Info{
+            owner: 42.into(),
+            counter: 1.into(),
+        };
+        assert_eq!(state, expected);
+
+        let result = program.send(42, Action::Inc);
+        let expected = Log::builder().payload(1i32);
+        assert!(result.contains(&expected));
+
+        let result = program.send(42, Action::Dec);
+        let expected = Log::builder().payload(0i32);
+        assert!(result.contains(&expected));
+
+        let result = program.send(42, Action::Get);
+        let expected = Log::builder().payload(0i32);
+        assert!(result.contains(&expected));
+
+        let result = program.send(42, Action::Dec);
+        let expected = Log::builder().payload(-1i32);
+        assert!(result.contains(&expected));
+
+        let result = program.send(42, Action::Get);
+        let expected = Log::builder().payload(-1i32);
+        assert!(result.contains(&expected));
+
+        let result = program.send(42, *b"ngmi");
+        assert!(result.main_failed());
+    }
+}
