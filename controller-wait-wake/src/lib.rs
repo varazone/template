@@ -8,6 +8,7 @@ static mut CONTRACT: Option<ActorId> = None;
 static mut OWNER: Option<ActorId> = None;
 static mut STATUS: Option<Status> = None;
 
+#[derive(Debug)]
 pub enum Status {
     Idle,
     MessageSent {
@@ -33,6 +34,9 @@ unsafe extern fn handle() {
     let action: Action = msg::load().expect("Failed to load payload");
     let status = STATUS.as_mut().expect("Status isn't initialized");
 
+    gstd::debug!("handle begin ({:?})", status);
+    gstd::debug!("msg id={:?} action={:?}", msg::id(), action);
+
     match *status {
         Status::Idle => {
             let orig_id = msg::id();
@@ -42,14 +46,19 @@ unsafe extern fn handle() {
                 Action::Get => msg::send(*id, b"get", 0).expect("Failed to get"),
             };
             *status = Status::MessageSent { orig_id, sent_id };
+            gstd::debug!("status={:?}", status);
+            gstd::debug!("wait");
             wait();
+            gstd::debug!("never reached");
         }
         Status::MessageReceived(n) => {
             msg::reply(n, 0).expect("Failed to reply");
             *status = Status::Idle;
+            gstd::debug!("status={:?}", status);
         }
         _ => todo!(),
-    }
+    };
+    gstd::debug!("handle end\n");
 }
 
 #[no_mangle]
@@ -59,13 +68,19 @@ unsafe extern fn handle_reply() {
     let status = STATUS.as_mut().expect("Status isn't initialized");
     let reply_to = msg::reply_to().expect("Failed to get reply_to");
 
+    gstd::debug!("handle_reply begin");
+    gstd::debug!("msg id={:?} reply_to={:?} n={:?}", msg::id(), reply_to, n);
+
     match *status {
         Status::MessageSent { orig_id, sent_id } if reply_to == sent_id => {
+            gstd::debug!("wake {:?}", orig_id);
             wake(orig_id).expect("Failed to wake message");
             *status = Status::MessageReceived(n);
+            gstd::debug!("status={:?}", status);
         }
         _ => todo!(),
-    }
+    };
+    gstd::debug!("handle_reply end");
 }
 
 // The `state()` entry point.
@@ -104,7 +119,7 @@ mod tests {
         assert!(!init_result.main_failed());
 
         let state: Info = program.read_state(b"").unwrap();
-        let expected = Info{
+        let expected = Info {
             owner: 42.into(),
             counter: 1.into(),
         };

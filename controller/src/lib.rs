@@ -74,7 +74,7 @@ mod tests {
         assert!(!init_result.main_failed());
 
         let state: Info = program.read_state(b"").unwrap();
-        let expected = Info{
+        let expected = Info {
             owner: 42.into(),
             counter: 1.into(),
         };
