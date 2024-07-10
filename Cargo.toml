@@ -12,6 +12,7 @@ publish = false
 resolver = "2"
 members = [
   "controller",
+  "controller-async-await",
   "controller-wait-wake",
   "controller-io",
   "counter",
@@ -19,11 +20,11 @@ members = [
 ]
 
 [workspace.dependencies]
-gstd = "1.4.1"
-gmeta = "1.4.1"
-gear-wasm-builder = "1.4.1"
-gtest = "1.4.1"
-gclient = "1.4.1"
+gstd = "1.4.2"
+gmeta = "1.4.2"
+gear-wasm-builder = "1.4.2"
+gtest = "1.4.2"
+gclient = "1.4.2"
 controller-io.path = "controller-io"
 tokio = "1"
 xshell = "0.2"
