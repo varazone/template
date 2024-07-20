@@ -1,5 +1,5 @@
 [package]
-name = "template-io"
+name = "automation-io"
 version.workspace = true
 edition.workspace = true
 publish.workspace = true

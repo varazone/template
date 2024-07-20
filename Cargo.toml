@@ -7,18 +7,18 @@ edition = "2021"
 publish = false
 
 [package]
-name = "template"
+name = "automation"
 version.workspace = true
 edition.workspace = true
 publish.workspace = true
 
 [dependencies]
 gstd.workspace = true
-template-io.workspace = true
+automation-io.workspace = true
 
 [build-dependencies]
 gear-wasm-builder.workspace = true
-template-io.workspace = true
+automation-io.workspace = true
 
 [dev-dependencies]
 gtest.workspace = true
@@ -30,7 +30,6 @@ tokio.workspace = true
 [workspace]
 members = [
   "io",
-  "state",
   "xtask",
 ]
 
@@ -40,7 +39,7 @@ gmeta = "1.4.2"
 gear-wasm-builder = "1.4.2"
 gtest = "1.4.2"
 gclient = "1.4.2"
-template-io.path = "io"
+automation-io.path = "io"
 tokio = "1"
 xshell = "0.2"
 anyhow = "1"

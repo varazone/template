@@ -502,6 +502,26 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f1fdabc7756949593fe60f30ec81974b613357de856987752631dea1e3394c80"
 
 [[package]]
+name = "automation"
+version = "0.1.0"
+dependencies = [
+ "automation-io",
+ "gclient",
+ "gear-wasm-builder",
+ "gstd",
+ "gtest",
+ "tokio",
+]
+
+[[package]]
+name = "automation-io"
+version = "0.1.0"
+dependencies = [
+ "gmeta",
+ "gstd",
+]
+
+[[package]]
 name = "backtrace"
 version = "0.3.71"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2558,20 +2578,8 @@ checksum = "82d4fbb3700df8abeed1753ca211be90d9ae7eba772dee1b097f2e6c0ac27871"
 dependencies = [
  "blake2",
  "derive_more",
- "gmeta-codegen",
  "hex",
  "scale-info",
-]
-
-[[package]]
-name = "gmeta-codegen"
-version = "1.4.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "54280c1b89114b9b6490246e1df64dcb4d8bd1a8fabb3885e954677a439f9179"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 2.0.71",
 ]
 
 [[package]]
@@ -6039,36 +6047,6 @@ dependencies = [
  "fastrand 2.0.2",
  "rustix 0.38.34",
  "windows-sys 0.52.0",
-]
-
-[[package]]
-name = "template"
-version = "0.1.0"
-dependencies = [
- "gclient",
- "gear-wasm-builder",
- "gstd",
- "gtest",
- "template-io",
- "tokio",
-]
-
-[[package]]
-name = "template-io"
-version = "0.1.0"
-dependencies = [
- "gmeta",
- "gstd",
-]
-
-[[package]]
-name = "template-state"
-version = "0.1.0"
-dependencies = [
- "gear-wasm-builder",
- "gmeta",
- "gstd",
- "template-io",
 ]
 
 [[package]]
