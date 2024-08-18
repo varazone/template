@@ -35,11 +35,11 @@ members = [
 ]
 
 [workspace.dependencies]
-gstd = "1.4.2"
-gmeta = "1.4.2"
-gear-wasm-builder = "1.4.2"
-gtest = "1.4.2"
-gclient = "1.4.2"
+gstd = "1.5.0"
+gmeta = "1.5.0"
+gear-wasm-builder = "1.5.0"
+gtest = "1.5.0"
+gclient = "1.5.0"
 template-io.path = "io"
 tokio = "1"
 xshell = "0.2"
